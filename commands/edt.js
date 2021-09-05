@@ -67,6 +67,7 @@ function printIcal(message, calendar, date){
         .setTitle(date.toLocaleDateString('fr-FR') + " - " + calendar.name)
         .setColor(goodColor);
     ical.async.fromURL(calendar.url, {}, function (err, data) {
+        console.log(data)
         let todaysEvents = [];
         for(let element in data){
             if(data[element].type == 'VEVENT'){
@@ -95,7 +96,7 @@ function printIcal(message, calendar, date){
             let startTime = new Date(e.start);
             let endTime = new Date(e.end);
             response.addField(
-                e.description.val,
+                e.summary,
                 startTime.getHours() + "h" + pad(startTime.getMinutes(), 2) + " -> " + endTime.getHours() + "h" + pad(endTime.getMinutes(), 2)
             );
         }
