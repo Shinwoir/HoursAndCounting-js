@@ -14,7 +14,7 @@ for (const file of commandFiles) {
 
 client.once('ready', () => {
 	console.log('HoursAndCounting is now running.');
-    client.user.setActivity('ouais ouais');
+    client.user.setActivity('usage: !edt <jour>');
 });
 
 client.on('message', message => {
