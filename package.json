@@ -24,8 +24,5 @@
   "dependencies": {
     "discord.js": "^12.5.3",
     "node-ical": "^0.13.0"
-  },
-  "scripts": {
-    "start": "node index.js"
   }
 }
