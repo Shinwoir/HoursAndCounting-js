@@ -68,7 +68,7 @@ function printIcal(message, calendar, date){
         .setTitle(date.toLocaleDateString('fr-FR') + " - " + calendar.name)
         .setColor(goodColor);
     ical.async.fromURL(calendar.url, {}, function (err, data) {
-        //console.log(data)
+        console.log(data)
         let todaysEvents = [];
         for(let element in data){
             if(data[element].type == 'VEVENT'){
@@ -94,12 +94,13 @@ function printIcal(message, calendar, date){
         });
         
         for(let e of todaysEvents) {
+            //console.log(e.description)
             let startTime = new Date(e.start);
             let endTime = new Date(e.end);
             let teacher = e.description.split('\n')
             response.addField(
                 e.summary,
-                startTime.getHours() + "h" + pad(startTime.getMinutes(), 2) + " -> " + endTime.getHours() + "h" + pad(endTime.getMinutes(), 2) + " en " + e.location.slice(7) + '\n' + teacher[0]
+                startTime.getHours() + "h" + pad(startTime.getMinutes(), 2) + " -> " + endTime.getHours() + "h" + pad(endTime.getMinutes(), 2) + " en " + e.location/*  + '\n' + teacher[0] */
             )
         }
         message.channel.send(response);
